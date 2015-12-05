@@ -1,0 +1,14 @@
+
+
+
+
+
+.build/uno/src/PS3BT/PS3BT.cpp : src/PS3BT/PS3BT.ino
+	@mkdir -p .build/uno/src/PS3BT
+	@echo [93msrc/PS3BT/PS3BT.ino[0m
+	@/usr/local/bin/ino preproc  -o $@ $^
+
+
+all : .build/uno/src/PS3BT/PS3BT.cpp
+	@true
+
