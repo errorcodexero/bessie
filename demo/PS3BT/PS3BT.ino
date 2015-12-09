@@ -138,7 +138,7 @@ void loop()
       PS3.setLedOn(LED2);
     }
     if (PS3.getButtonClick(LEFT)) {
-      USB_HOST_SERIAL.print(F("\r\nLeft"));
+      USB_HOST_SERIAL.print(F("Left"));
       leds |= LED_LEFT;
       PS3.setLedOff();
       PS3.setLedOn(LED3);
