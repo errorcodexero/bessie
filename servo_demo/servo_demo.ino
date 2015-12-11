@@ -7,13 +7,13 @@ struct Robot_inputs {
 };
 
 struct Robot_outputs {
-  Servo serv;
+  Servo vex;
 };
 
 USB Usb;
 USBHub Hub1(&Usb);
 BTD Btd(&Usb);
-PS3BT PS3(&Btd);    
+PS3BT PS3(&Btd);
 
 Robot_inputs robot_inputs;
 Robot_outputs robot_outputs;
@@ -32,7 +32,7 @@ void setup() {
 
   USB_HOST_SERIAL.println(F("Started"));
 
-  robot_outputs.serv.attach(2);
+  robot_outputs.vex.attach(2);
 }
 
 void loop() {
@@ -45,8 +45,8 @@ void loop() {
 
   if (PS3.PS3Connected) {
     int stick_value = PS3.getAnalogStick(RightStickY);
-    robot_outputs.serv.write(stick_value);
-    
-    USB_HOST_SERIAL.println("Servo set to ");
+    int motor_micros = map(stick_value, 0, 255, 1000, 2000);
+    robot_outputs.vex.writeMicroseconds(motor_micros);
+    //USB_HOST_SERIAL.println(PS3.getAnalogStick(RightStickY));
   }
 }
